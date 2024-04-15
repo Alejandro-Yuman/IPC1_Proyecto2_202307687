@@ -1,10 +1,15 @@
 
 import React, { useState } from "react";
-import './Styles/Styles.css'
+import '../../Styles/Styles.css'
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function IniciarSesion() {
     const [carnet, setCarnet] = useState('')
     const [contraseña, setContraseña] = useState('')
+    const [cookies,setCookies] = useCookies(['usuario'])
+
+    const Navegador = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -25,12 +30,18 @@ function IniciarSesion() {
             .then((res) => {
                 if (res.encontrado) {
                     const dataUser = res.datos;
+   
                     alert(res.mensaje + " " + dataUser.nombre)
+  
+                    setCookies('usuario',dataUser)
+
+                    Navegador('/mainAdmin')
                 } else {
                     alert(res.error)
                 }
             }).catch(((error) => console.error(error)))
     }
+
 
     return (
     <div className="login-background">
@@ -38,9 +49,9 @@ function IniciarSesion() {
             <div className="row ">
                 <div className="col imagen-Login ">
                     <div className="text-center pt-5 pb-4">
-                        <img className="w-50 h-50" src={require('./Images/ApertureLogo.png')} alt="" />
+                        <img className="w-50 h-50" src={require('../../Images/ApertureLogo.png')} alt="" />
                     </div>
-                    <h2 className="text-white pt-5 mt-5 text-center">WE DO WHAT WE MUST<br /> BACAUSE WE CAN</h2>
+                    <h2 className="text-white pt-5 mt-5 text-center">WE DO WHAT WE MUST<br /> BECAUSE WE CAN</h2>
                 </div>
                 <div className="col">
                     <h2 className="fw-bold text-center py-5">Bienvenido</h2>
@@ -74,7 +85,7 @@ function IniciarSesion() {
 
 
                         <div className="text-center py-5">
-                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                            <button type="submit" class="btn btn-primary ">Iniciar Sesión</button>
                         </div>
 
 
