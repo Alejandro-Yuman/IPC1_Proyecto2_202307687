@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import '../../Styles/Styles.css'
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import Swal from 'sweetalert2'
 
 function IniciarSesion() {
     const [carnet, setCarnet] = useState('')
@@ -30,14 +31,25 @@ function IniciarSesion() {
             .then((res) => {
                 if (res.encontrado) {
                     const dataUser = res.datos;
-   
-                    alert(res.mensaje + " " + dataUser.nombre)
+                    Swal.fire({
+                        icon: "success",
+                        title: res.mensaje + " " + dataUser.nombre,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+
+
   
                     setCookies('usuario',dataUser)
 
                     Navegador('/mainAdmin')
                 } else {
-                    alert(res.error)
+                    Swal.fire({
+                        icon: "error",
+                        title: res.error,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
                 }
             }).catch(((error) => console.error(error)))
     }
@@ -51,7 +63,7 @@ function IniciarSesion() {
                     <div className="text-center pt-5 pb-4">
                         <img className="w-50 h-50" src={require('../../Images/ApertureLogo.png')} alt="" />
                     </div>
-                    <h2 className="text-white pt-5 mt-5 text-center">WE DO WHAT WE MUST<br /> BECAUSE WE CAN</h2>
+                    <h2 className="text-white pt-5 mt-5 text-center">Conectando personas <br/>Creando comunidades.</h2>
                 </div>
                 <div className="col">
                     <h2 className="fw-bold text-center py-5">Bienvenido</h2>
@@ -91,7 +103,7 @@ function IniciarSesion() {
 
 
                         <div className="my-3">
-                            <span>No tienes cuenta? <a href="#">Regístrate</a></span><br />
+                            <span>No tienes cuenta? <a href="" onClick={() => { Navegador('/register') }} >Regístrate</a></span><br />
                             <span><a href="#">Recuperar Contraseña</a></span>
 
                         </div>

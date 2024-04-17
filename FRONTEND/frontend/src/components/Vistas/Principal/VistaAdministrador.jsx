@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import '../../Styles/Styles.css'
 import { useCookies } from "react-cookie";
 import { Modal } from "react-bootstrap";
+import Swal from 'sweetalert2'
 
 
 function MenuPrincipalAdministrador() {
@@ -50,10 +51,20 @@ function MenuPrincipalAdministrador() {
             .then((response) => response.json())
             .then((res) => {
                 if(res.mensaje){
-                    alert(res.mensaje)
+                    Swal.fire({
+                        icon: "success",
+                        title: res.mensaje,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
                     setActualizarTabla(!actualizarTabla)
                 }else{
-                    alert(res.error)
+                    Swal.fire({
+                        icon: "error",
+                        title: res.error,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
                 }
                 
             }).catch(((error) => console.error(error)))
