@@ -73,7 +73,6 @@ function MenuPrincipalAdministrador() {
 
     return (
         <div className="login-background">
-            <h1>Nombre {datosUser.nombre}</h1>
             <div className="container pt-5">
                 <table class="table table-striped pt-5">
                     <thead>
@@ -102,8 +101,8 @@ function MenuPrincipalAdministrador() {
                                     <td>{user.carrera}</td>
                                     <td>{user.correo}</td>
                                     <td>
-                                        <button class="btn btn-outline-primary m-1" onClick={() => { userView(user) }}>Ver</button>
-                                        <button class="btn btn-outline-danger m-1" onClick={() => { deleteUser(user.carnet) }}>Eliminar</button>
+                                        <button className="btn btn-outline-primary m-1" onClick={() => { userView(user) }}>Ver</button>
+                                        <button className="btn btn-outline-danger m-1" onClick={() => { deleteUser(user.carnet) }}>Eliminar</button>
                                     </td>
                                 </tr>
                             ))

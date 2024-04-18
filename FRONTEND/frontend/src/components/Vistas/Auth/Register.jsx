@@ -133,7 +133,7 @@ function Register() {
                     </div>
 
                     <div className="pt-3 text-center">
-                        <span>Ya tienes cuenta? <a href="" onClick={() => { Navegador('/login') }} >Regístrate</a></span><br />
+                        <span>Ya tienes cuenta? <a href="" onClick={() => { Navegador('/login') }} >Iniciar Sesión</a></span><br />
 
                     </div>
                 </form>

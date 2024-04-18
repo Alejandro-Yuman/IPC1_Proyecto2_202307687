@@ -4,6 +4,7 @@ const router = express.Router();
 const{hello} = require('../controllers/holamundo');
 const {SingUp ,login} = require('../controllers/Authentication')
 const {getUsers,editar ,eliminar} = require('../controllers/GestionPerfil')
+const {CrearPost,GetAllPosts} = require('../controllers/PostController')
 
 //------------------------------Rutas
 router.get('/mensaje',hello);
@@ -26,4 +27,13 @@ router.delete('/eliminar',eliminar)
 
 //------------------------------Fin Authentication
 
+//------------------------------Post
+
+//Get
+router.get('/getAllPosts',GetAllPosts)
+
+//Post
+router.post('/crearPost',CrearPost)
+
+//------------------------------Fin Post
 module.exports = router;
