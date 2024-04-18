@@ -23,6 +23,7 @@ function MenuPrincipalAdministrador() {
         })
             .then((response) => response.json())
             .then((res) => {
+                console.log(res);
                 setUsers(res.usuarios)
             }).catch(((error) => console.error(error)))
 
@@ -74,7 +75,7 @@ function MenuPrincipalAdministrador() {
     return (
         <div className="login-background">
             <div className="container pt-5">
-                <table class="table table-striped pt-5">
+                <table className="table table-striped pt-5">
                     <thead>
                         <tr>
                             <th scope="col">Carnet</th>
@@ -84,7 +85,6 @@ function MenuPrincipalAdministrador() {
                             <th scope="col">Facultad</th>
                             <th scope="col">Carrera</th>
                             <th scope="col">Correo</th>
-                            <th scope="col">Contraseña</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -92,7 +92,7 @@ function MenuPrincipalAdministrador() {
                         {
                             users.map(user => (
                                 <tr>
-                                    <th scope="row">1</th>
+                                   
                                     <td>{user.carnet}</td>
                                     <td>{user.nombre}</td>
                                     <td>{user.apellidos}</td>

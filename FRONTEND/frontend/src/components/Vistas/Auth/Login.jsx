@@ -17,11 +17,6 @@ function IniciarSesion() {
 
         if (carnet === "12024" && contraseña === "@dminIPC1") {
             const dataUser = {
-
-            }
-            Navegador('/mainAdmin')
-        } else {
-            const dataJson = {
                 carnet: "12024",
                 nombre: "Ayeser Cristian",
                 apellidos: "Oxlaj Juárez",
@@ -30,6 +25,14 @@ function IniciarSesion() {
                 carrera: "Ingeniería en Ciencias y Sistemas",
                 correo: "ipc11s2024@email.com",
                 contraseña: "@dminIPC1"
+            }
+            setCookies('usuario', dataUser)
+            Navegador('/mainAdmin')
+        } else {
+
+            const dataJson = {
+                carnet: carnet,
+                contraseña: contraseña
             }
 
             fetch('http://localhost:5000/login', {
@@ -56,6 +59,7 @@ function IniciarSesion() {
 
                         Navegador('/home')
                     } else {
+                        
                         Swal.fire({
                             icon: "error",
                             title: res.error,
