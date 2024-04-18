@@ -3,7 +3,7 @@ import '../../Styles/Styles.css'
 import { useNavigate, Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
-function NavBar() {
+function NavBarAdmin() {
     const [cookies, setCookies, removeCookie] = useCookies(['usuario'])
     const Navegador = useNavigate();
 
@@ -18,23 +18,25 @@ function NavBar() {
             <div className="left-container-navbar">
 
                 <ul className="link-list">
-
                     <li className="link-list-item">
-                        <Link className="link" to="/home">Home</Link>
+                        <Link className="link" to="/mainAdmin">Gestion Usuarios</Link>
                     </li>
                     <li className="link-list-item">
-                        <Link className="link" to="/createPost">Create Post</Link>
+                        <Link className="link" to="/gestionPosts">Gestion Posts</Link>
+                    </li>
+                    <li className="link-list-item">
+                        <Link className="link" to="/cargaMasiva">Carga Masiva</Link>
+                    </li>
+
+                    <li className="link-list-item">
+                        <Link className="link" to="/reportes">Reportes</Link>
                     </li>
                 </ul>
             </div>
             <div className="right-container-navbar">
-                <li className="text-center">
-                    <Link className="link" to="/editarPerfil">Editar Perfil</Link>
-                </li>
                 <button className="btn btn-outline-info logout-btn" onClick={handleSubmit}>
                     LogOut
                 </button>
-
 
             </div>
 
@@ -42,4 +44,4 @@ function NavBar() {
     )
 }
 
-export default NavBar;
+export default NavBarAdmin;

@@ -23,13 +23,13 @@ function Register() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if(hombre){
+        if (hombre) {
             genero = "Hombre"
             console.log(genero);
-        }else if(mujer){
+        } else if (mujer) {
             genero = "Mujer"
             console.log(genero);
-        }else{
+        } else {
             Swal.fire({
                 icon: "error",
                 title: "Seleccione un genero",
@@ -43,7 +43,7 @@ function Register() {
             carnet: carnet,
             nombre: nombres,
             apellidos: apellidos,
-            
+
             facultad: facultad,
             carrera: carrera,
             correo: correo,
@@ -90,121 +90,122 @@ function Register() {
 
     return (
         <div className="login-background">
-            <div className="container w-75 mt-5 bg-white">
-                <form onSubmit={handleSubmit}>
-                    <h2 className="fw-bold text-center py-3">Crear Cuenta</h2>
+            <div className="container bg-white  mt-5 rounded">
+                <div className="row">
+                    <div className="col text-center pt-5 imagen-Register ">
+                        <div className="text-center pt-5  ">
+                            <img className="w-50 h-50 " src={require('../../Images/ApertureLogo.png')} alt="" />
+                        </div>
+                    </div>
+                    <div className="col  pt-3">
+                        <h3 className="text-center mb-5 fw-bold">Crear Cuenta</h3>
+                        <form onSubmit={handleSubmit}>
 
-                    <div className="row ">
+                            <div className="mb-4">
 
-                        <div className="col">
+                                <div className="row">
+                                    <div className="col">
+                                        <input
+                                            type="text"
+                                            className="Input-no-Border "
+                                            id="floatInput"
+                                            placeholder="Carnet"
+                                            onChange={(e) => setCarnet(e.target.value)}
+                                            value={carnet}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="col">
 
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="floatInput"
-                                    placeholder="Carnet"
-                                    onChange={(e) => setCarnet(e.target.value)}
-                                    value={carnet}
-                                    required
-                                />
-                                <label >Carnet</label>
+                                        <input
+                                            type="email"
+                                            className="Input-no-Border  "
+                                            id="floatInput"
+                                            placeholder="Correo"
+                                            onChange={(e) => setCorreo(e.target.value)}
+                                            value={correo}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="mb-4">
+
+                                <div className="row">
+                                    <div className="col">
+                                        <input
+                                            type="text"
+                                            className="Input-no-Border"
+                                            id="floatInput"
+                                            placeholder="Nombres"
+                                            onChange={(e) => setNombres(e.target.value)}
+                                            value={nombres}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="col">
+
+                                        <input
+                                            type="text"
+                                            className="Input-no-Border"
+                                            placeholder="Apellidos"
+                                            id="floatInput"
+                                            onChange={(e) => setApellidos(e.target.value)}
+                                            value={apellidos}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="mb-4">
+
+                                <div className="row">
+                                    <div className="col">
+
+                                        <input
+                                            type="text"
+                                            className="Input-no-Border"
+                                            id="floatInput"
+                                            placeholder="Facultad"
+                                            onChange={(e) => setFacultad(e.target.value)}
+                                            value={facultad}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="col">
+                                        <input
+                                            type="text"
+                                            className="Input-no-Border"
+                                            placeholder="Carrera"
+                                            id="floatInput"
+                                            onChange={(e) => setCarrera(e.target.value)}
+                                            value={carrera}
+                                            required
+
+                                        />
+                                    </div>
+                                </div>
+
                             </div>
 
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="floatInput"
-                                    placeholder="Nombre"
-                                    onChange={(e) => setNombres(e.target.value)}
-                                    value={nombres}
-                                    required
-                                />
-                                <label >Nombre</label>
-                            </div>
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="floatInput"
-                                    placeholder="Facultad"
-                                    onChange={(e) => setFacultad(e.target.value)}
-                                    value={facultad}
-                                    required
-                                />
-                                <label >Facultad</label>
-                            </div>
-
-                            <div className="form-floating mb-3">
+                            <div className="mb-4">
 
                                 <input
                                     type="password"
-                                    className="form-control"
+                                    className="Input-no-Border"
                                     id="floatInput"
-                                    placeholder="Carnet"
+                                    placeholder="Contraseña"
                                     onChange={(e) => setContraseña(e.target.value)}
                                     value={contraseña}
                                     required
                                     pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}"
                                     title="Debe ingresar al menos 8 caracteres, unos minuscula (a), uno mayuscula (A) y un caracter especial (-)."
                                 />
-                                <label>Contraseña</label>
                             </div>
 
-
-                        </div>
-
-
-                        <div className="col">
-
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="floatInput"
-                                    placeholder="Correo"
-                                    onChange={(e) => setCorreo(e.target.value)}
-                                    value={correo}
-                                    required
-                                />
-                                <label >Correo</label>
-                            </div>
-
-
-
-                            <div className="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="floatInput"
-                                    placeholder="Apellidos"
-                                    onChange={(e) => setApellidos(e.target.value)}
-                                    value={apellidos}
-                                    required
-                                />
-                                <label >Apellidos</label>
-                            </div>
-
-                            <div className="form-floating mb-3">
-
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="floatInput"
-                                    placeholder="Carnet"
-                                    onChange={(e) => setCarrera(e.target.value)}
-                                    value={carrera}
-                                    required
-
-                                />
-                                <label>Carrera</label>
-                            </div>
-
-
-
-
-                            <div className="d-md-flex justify-content-start align-items-center mb-1 py-2">
+                            <div className="d-md-flex justify-content-start align-items-center mb-5">
 
                                 <h6 className="mb-0 me-4">Genero: </h6>
 
@@ -225,27 +226,18 @@ function Register() {
 
 
                             </div>
+                            <div className="text-center mb-5 ">
+                                <button type="submit" className="btn btn-primary ">Submit</button>
 
+                            </div>
+                            <div className="mb-3">
+                                <span>Ya tienes cuenta? <a href="" onClick={() => { Navegador('/login') }} >Iniciar Sesión</a></span><br />
 
+                            </div>
 
-
-
-
-                        </div>
+                        </form>
                     </div>
-                    <div className="text-center py-3">
-                        <button type="submit" className="btn btn-primary ">Crear Cuenta</button>
-                    </div>
-
-                    <div className="pt-3 text-center">
-                        <span>Ya tienes cuenta? <a href="" onClick={() => { Navegador('/login') }} >Iniciar Sesión</a></span><br />
-
-                    </div>
-                </form>
-                <div className="w-50 h-50 pb-3">
-                    <img className="w-25 h-25" src={require('../../Images/LogoNegro.png')} alt="" />
                 </div>
-
             </div>
         </div>
     )

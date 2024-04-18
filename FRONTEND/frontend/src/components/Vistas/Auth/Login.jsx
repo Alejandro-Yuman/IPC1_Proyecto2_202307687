@@ -89,29 +89,29 @@ function IniciarSesion() {
 
                         <form onSubmit={handleSubmit}>
 
-                            <div className="form-floating mb-3">
+                            <div className="form-floating mb-5">
                                 <input
                                     type="text"
-                                    className="form-control"
+                                    className="Input-no-Border"
                                     id="floatInput"
                                     placeholder="Carnet"
                                     onChange={(e) => setCarnet(e.target.value)}
                                     value={carnet}
                                 />
-                                <label >Carnet</label>
+
                             </div>
 
-                            <div className="form-floating mb-3">
+                            <div className="form-floating mb-5">
 
                                 <input
                                     type="password"
-                                    className="form-control"
+                                    className="Input-no-Border  "
                                     id="floatInput"
-                                    placeholder="Carnet"
+                                    placeholder="Contraseña"
                                     onChange={(e) => setContraseña(e.target.value)}
                                     value={contraseña}
                                 />
-                                <label>Contraseña</label>
+                                
                             </div>
 
 
@@ -123,7 +123,6 @@ function IniciarSesion() {
 
                             <div className="my-3">
                                 <span>No tienes cuenta? <a href="" onClick={() => { Navegador('/register') }} >Regístrate</a></span><br />
-                                <span><a href="#">Recuperar Contraseña</a></span>
 
                             </div>
 
