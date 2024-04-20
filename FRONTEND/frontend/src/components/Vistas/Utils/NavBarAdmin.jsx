@@ -15,8 +15,12 @@ function NavBarAdmin() {
 
     return (
         <div className="container-navbar">
+            
+            <h1>.</h1>
+            <img  src={require('../../Images/logoApertureSimple.png')} width="30" height="30" alt="" />
+            
             <div className="left-container-navbar">
-
+                
                 <ul className="link-list">
                     <li className="link-list-item">
                         <Link className="link" to="/mainAdmin">Gestion Usuarios</Link>

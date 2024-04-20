@@ -15,6 +15,8 @@ function NavBar() {
 
     return (
         <div className="container-navbar">
+            <h1>.</h1>
+            <img  src={require('../../Images/logoApertureSimple.png')} width="30" height="30" alt="" />
             <div className="left-container-navbar">
 
                 <ul className="link-list">

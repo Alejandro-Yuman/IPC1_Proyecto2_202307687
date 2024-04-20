@@ -5,6 +5,8 @@ import Register from '../Vistas/Auth/Register'
 import Home from '../Vistas/Principal/Home'
 import Post from '../Vistas/UserVistas/Post'
 import PrimeraPagina from '../Vistas/Principal/PrimeraPagina'
+import EditarPerfil from '../Vistas/UserVistas/EditarPerfil'
+
 function Router(){
     
     
@@ -18,6 +20,7 @@ function Router(){
                 <Route path="/home"  element={ <Home/>} />
                 <Route path="/createPost"  element={ <Post/>} />
                 <Route path="/primeraPagina"  element={ <PrimeraPagina/>} />
+                <Route path="/editarPerfil"  element={ <EditarPerfil/>} />
             </Routes>
         </BrowserRouter>
     )

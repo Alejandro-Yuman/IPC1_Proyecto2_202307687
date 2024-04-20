@@ -9,10 +9,13 @@ function CrearPost(req,res){
         const carnet = req.body.carnet
         const descripcion = req.body.descripcion
         const imagen = req.body.imagen
+        const categoria = req.body.categoria
+        const anonimo = req.body.anonimo
 
         id_publicacion = id_publicacion + 1
-        const newPost = new Post(id_publicacion, carnet, descripcion, imagen)
+        const newPost = new Post(id_publicacion, carnet, descripcion, imagen,categoria,anonimo)
         list_posts.push(newPost)
+
         res.json(
             { mensaje: 'Post creado exitosamente correctamente.' }
 
@@ -42,14 +45,19 @@ function GetAllPosts(req,res){
                     descripcion: post.descripcion,
                     imagen: post.imagen,
                     fechaHora: post.fechaHora,
-                    user: usuario.nombre
+                    user: usuario.nombre,
+                    facultad: usuario.facultad,
+                    carrera: usuario.carrera,
+                    categoria: post.categoria,
+                    anonimo: post.anonimo         
+
                 };
 
                 posts_con_usuario.push(post_con_usuario);
             }
-        }
+        } 
 
-
+         
         res.json(
             { publicaciones: posts_con_usuario }
         );

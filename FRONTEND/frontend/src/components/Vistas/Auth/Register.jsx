@@ -227,7 +227,7 @@ function Register() {
 
                             </div>
                             <div className="text-center mb-5 ">
-                                <button type="submit" className="btn btn-primary ">Submit</button>
+                                <button type="submit" className="btn btn-primary ">Crear Cuenta</button>
 
                             </div>
                             <div className="mb-3">
