@@ -7,8 +7,10 @@ class Post{
         this.fechaHora = new Date();
         this.categoria = categoria;
         this.anonimo = anonimo;
+        this.likes = []
         this.comentarios=[]
     }
 }
+
 
 module.exports = Post;
