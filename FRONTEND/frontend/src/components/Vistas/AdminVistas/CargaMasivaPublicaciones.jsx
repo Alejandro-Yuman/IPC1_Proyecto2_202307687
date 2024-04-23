@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import NavBarAdmin from '../Utils/NavBarAdmin'
 
 
-function CargaMasivaUsuarios() {
+function CargaMasivaPublicaciones() {
     const [cookies, setCookies] = useCookies(['usuario'])
     const [datosUser, setDatosUser] = useState(cookies.usuario)
 
@@ -18,21 +18,21 @@ function CargaMasivaUsuarios() {
     const [selectedFile, setSelectedFile] = useState(null)
 
 
-    const cargarDatos = async ()=>{
+    const cargarDatos = async () => {
         if (!selectedFile) {
             Swal.fire({
                 icon: "error",
                 title: "Por favor, seleccione un archivo",
                 showConfirmButton: false,
                 timer: 1500
-            });  
+            });
             return
         }
 
         const jsonData = await selectedFile.text()
-        const userArray =JSON.parse(jsonData)
+        const userArray = JSON.parse(jsonData)
 
-        fetch('http://localhost:5000/cargaMasivaUsuarios', {
+        fetch('http://localhost:5000/cargaMasivaPublicaciones', {
             method: "POST",
             body: JSON.stringify(userArray),
             headers: {
@@ -60,7 +60,7 @@ function CargaMasivaUsuarios() {
             }).catch(((error) => console.error(error)))
     }
 
-    const handleFileChange = async(event) => {
+    const handleFileChange = async (event) => {
         setSelectedFile(event.target.files[0])
         const jsonData = await event.target.files[0].text()
         setListaObjetos(JSON.parse(jsonData))
@@ -72,39 +72,40 @@ function CargaMasivaUsuarios() {
         <div>
             <NavBarAdmin />
             <div className="home-background">
-                <h1 className="fw-bold text-center pt-3 text-white">Carga Masiva de Usuarios</h1>
+                <h1 className="fw-bold text-center pt-3 text-white">Carga Masiva de Publicaciones</h1>
 
                 <div className="container pt-3">
                     <div className="container mb-2">
-                        <input type="file" className="mb-2 text-white fw-bold "  accept=".json" onChange={handleFileChange} />
-                        <button type="button" class="btn btn-secondary mx-4" onClick={cargarDatos}>Cargar Archivo</button>
+                        <input type="file" className="mb-2 text-white fw-bold " accept=".json" onChange={handleFileChange} />
+                        <button type="button" className="btn btn-secondary mx-4" onClick={cargarDatos}>Cargar Archivo</button>
                     </div>
                     <table className="table table-striped pt-5">
                         <thead>
                             <tr>
-                                <th scope="col">Carnet</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellidos</th>
-                                <th scope="col">Genero</th>
-                                <th scope="col">Facultad</th>
-                                <th scope="col">Carrera</th>
-                                <th scope="col">Correo</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Visibilidad</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                listaObjetos.map(user => (
+                                listaObjetos.map(post => (
                                     <tr>
 
 
-                                        <td>{user.carnet}</td>
-                                        <td>{user.nombres}</td>
-                                        <td>{user.apellidos}</td>
-                                        <td>{user.genero}</td>
-                                        <td>{user.facultad}</td>
-                                        <td>{user.carrera}</td>
-                                        <td>{user.correo}</td>
+                                        <td>{post.codigo}</td>
+                                        <td>{post.descripcion}</td>
+                                        <td>{post.categoria}</td>
+                                        {post.anonimo &&
+                                            <td>True</td>
+                                        }
+                                        {!post.anonimo &&
+                                            <td>False</td>
+                                        }
+
+
 
                                     </tr>
                                 ))
@@ -122,4 +123,4 @@ function CargaMasivaUsuarios() {
 }
 
 
-export default CargaMasivaUsuarios;
+export default CargaMasivaPublicaciones;

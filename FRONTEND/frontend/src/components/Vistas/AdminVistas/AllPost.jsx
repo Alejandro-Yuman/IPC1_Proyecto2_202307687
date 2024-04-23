@@ -81,7 +81,7 @@ function AllPost() {
                 <h1 className="fw-bold text-center pt-3 text-white">Publicaciones</h1>
 
                 <div className="container ">
-                    <button type="button" class="btn btn-secondary mb-2">Exportar como CSV</button>
+                    <button type="button" className="btn btn-secondary mb-2">Exportar como CSV</button>
                     <table className="table table-striped pt-5">
                         <thead>
                             <tr>

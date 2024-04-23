@@ -29,7 +29,10 @@ function NavBarAdmin() {
                         <Link className="link" to="/gestionPosts">Gestion Posts</Link>
                     </li>
                     <li className="link-list-item">
-                        <Link className="link" to="/cargaMasiva">Carga Masiva</Link>
+                        <Link className="link" to="/cargaMasivaUsuarios">Carga Masiva usuarios</Link>
+                    </li>
+                    <li className="link-list-item lg">
+                        <Link className="link" to="/cargaMasivaPublicaciones">Carga Masiva Publicaciones</Link>
                     </li>
 
                     <li className="link-list-item">

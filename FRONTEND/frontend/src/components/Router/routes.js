@@ -7,7 +7,8 @@ import Post from '../Vistas/UserVistas/Post'
 import PrimeraPagina from '../Vistas/Principal/PrimeraPagina'
 import EditarPerfil from '../Vistas/UserVistas/EditarPerfil'
 import AllPost from '../Vistas/AdminVistas/AllPost'
-import CargaMasiva from '../Vistas/AdminVistas/CargaMasivaUsuarios'
+import CargaMasivaUsuarios from '../Vistas/AdminVistas/CargaMasivaUsuarios'
+import CargaMasivaPublicaciones from '../Vistas/AdminVistas/CargaMasivaPublicaciones'
 
 function Router(){
     
@@ -24,7 +25,8 @@ function Router(){
                 <Route path="/primeraPagina"  element={ <PrimeraPagina/>} />
                 <Route path="/editarPerfil"  element={ <EditarPerfil/>} />
                 <Route path="/gestionPosts"  element={ <AllPost/>} />
-                <Route path="/cargaMasiva"  element={ <CargaMasiva/>} />
+                <Route path="/cargaMasivaUsuarios"  element={ <CargaMasivaUsuarios/>} />
+                <Route path="/cargaMasivaPublicaciones"  element={ <CargaMasivaPublicaciones/>} />
             </Routes>
         </BrowserRouter>
     )

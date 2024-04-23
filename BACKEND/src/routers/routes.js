@@ -5,7 +5,7 @@ const{hello} = require('../controllers/holamundo');
 const {SingUp ,login} = require('../controllers/Authentication')
 const {getUsers,editar ,eliminar} = require('../controllers/GestionPerfil')
 const {CrearPost,GetAllPosts,likePost,comentarPost, eliminarPost} = require('../controllers/PostController')
-const {CargaMasivaUsuarios} = require('../controllers/CargaMasivaController')
+const {CargaMasivaUsuarios,CargaMasivaPublicaciones} = require('../controllers/CargaMasivaController')
 
 //------------------------------Rutas
 router.get('/mensaje',hello);
@@ -47,7 +47,9 @@ router.delete('/eliminarPost',eliminarPost)
 
 //------------------------------Carga Masiva
 
+//Post
 router.post('/cargaMasivaUsuarios', CargaMasivaUsuarios)
+router.post('/CargaMasivaPublicaciones', CargaMasivaPublicaciones)
 
 //------------------------------Fin Carga Masiva
 module.exports = router;
