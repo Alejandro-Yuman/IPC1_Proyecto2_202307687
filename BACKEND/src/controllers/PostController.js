@@ -1,11 +1,11 @@
 
-const {list_users,list_posts} = require('../Data/data');
+const { list_users, list_posts } = require('../Data/data');
 const Comentario = require('../Models/Comentario');
 const Post = require('../Models/Post')
 
 var id_publicacion = 0;
 
-function CrearPost(req,res){
+function CrearPost(req, res) {
     try {
         const carnet = req.body.carnet
         const descripcion = req.body.descripcion
@@ -14,7 +14,7 @@ function CrearPost(req,res){
         const anonimo = req.body.anonimo
 
         id_publicacion = id_publicacion + 1
-        const newPost = new Post(id_publicacion, carnet, descripcion, imagen,categoria,anonimo)
+        const newPost = new Post(id_publicacion, carnet, descripcion, imagen, categoria, anonimo)
         list_posts.push(newPost)
 
         res.json(
@@ -30,7 +30,7 @@ function CrearPost(req,res){
 }
 
 
-function GetAllPosts(req,res){
+function GetAllPosts(req, res) {
     try {
         const posts_con_usuario = [];
 
@@ -38,7 +38,7 @@ function GetAllPosts(req,res){
 
             const usuario = list_users.find(user => user.carnet === post.user);
 
-            
+
 
             if (usuario) {
                 const post_con_usuario = {
@@ -50,17 +50,17 @@ function GetAllPosts(req,res){
                     facultad: usuario.facultad,
                     carrera: usuario.carrera,
                     categoria: post.categoria,
-                    anonimo: post.anonimo, 
+                    anonimo: post.anonimo,
                     likes: post.likes.length,
-                    comentarios: post.comentarios    
+                    comentarios: post.comentarios
 
                 };
 
                 posts_con_usuario.push(post_con_usuario);
             }
-        } 
+        }
 
-         
+
         res.json(
             { publicaciones: posts_con_usuario }
         );
@@ -73,21 +73,21 @@ function GetAllPosts(req,res){
         })
     }
 }
- 
-function likePost(req,res){
+
+function likePost(req, res) {
     try {
         const id = req.body.id;
         const id_user = req.body.id_user;
 
-        const postDarLike= list_posts.find(post => post.id === id);
+        const postDarLike = list_posts.find(post => post.id === id);
         if (postDarLike) {
             const likeIndex = postDarLike.likes.findIndex(usuarioId => usuarioId === id_user)
-            if(likeIndex !=-1){
-                postDarLike.likes.splice(likeIndex,1)
+            if (likeIndex != -1) {
+                postDarLike.likes.splice(likeIndex, 1)
                 return res.json({
                     mensaje: 'Like eliminado.'
                 })
-            }else{
+            } else {
                 postDarLike.likes.push(id_user)
                 return res.json({
                     mensaje: 'Se le dio like al post correctamente.'
@@ -96,7 +96,7 @@ function likePost(req,res){
 
 
 
-        }else{
+        } else {
             return res.json({
                 error: 'Publicación no encontrada.'
             })
@@ -109,26 +109,26 @@ function likePost(req,res){
     }
 }
 
-function comentarPost(req,res){
+function comentarPost(req, res) {
     try {
         const id = req.body.id;
         const user_id = req.body.user;
         const texto = req.body.texto;
- 
-        const postComentar= list_posts.find(post => post.id === id);
+
+        const postComentar = list_posts.find(post => post.id === id);
         if (postComentar) {
-            
-            console.log("ID:"+user_id );
+
+            console.log("ID:" + user_id);
             console.log(list_users);
             const usuarioComentando = list_users.find(user => user.carnet === user_id);
-            if(usuarioComentando){
+            if (usuarioComentando) {
                 const idComentario = postComentar.comentarios.length
-                const comentario = new Comentario(idComentario+1,usuarioComentando,texto)
+                const comentario = new Comentario(idComentario + 1, usuarioComentando, texto)
                 postComentar.comentarios.push(comentario);
                 return res.json({
                     mensaje: 'Comentario Publicado'
                 })
-            }else{
+            } else {
                 return res.json({
                     error: 'Usuario no encontrado.'
                 })
@@ -139,7 +139,7 @@ function comentarPost(req,res){
 
 
 
-        }else{
+        } else {
             return res.json({
                 error: 'Publicación no encontrada.'
             })
@@ -151,9 +151,39 @@ function comentarPost(req,res){
         })
     }
 }
+
+function eliminarPost(req, res) {
+    try {
+        const id = req.body.id;
+        const publiIndex =list_posts.findIndex(publi_i => publi_i.id === id);
+        
+        if(publiIndex != -1){ 
+
+            list_posts.splice(publiIndex,1)
+            return res.json({
+                mensaje: 'Publicación eliminada correctamente.'
+            })
+
+        }else{
+            console.log(error);
+            return res.json({
+                error: 'Publicación no encontrada.'
+            })
+        }
+
+
+    } catch (error) {
+        console.log(error);
+        return res.json({
+            error: 'Ocurrio un error al eliminar la publicación.'
+        })
+    }
+
+}
 module.exports = {
     CrearPost,
     GetAllPosts,
     likePost,
-    comentarPost
+    comentarPost,
+    eliminarPost
 }

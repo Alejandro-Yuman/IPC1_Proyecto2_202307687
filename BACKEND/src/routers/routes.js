@@ -4,7 +4,7 @@ const router = express.Router();
 const{hello} = require('../controllers/holamundo');
 const {SingUp ,login} = require('../controllers/Authentication')
 const {getUsers,editar ,eliminar} = require('../controllers/GestionPerfil')
-const {CrearPost,GetAllPosts,likePost,comentarPost} = require('../controllers/PostController')
+const {CrearPost,GetAllPosts,likePost,comentarPost, eliminarPost} = require('../controllers/PostController')
 
 //------------------------------Rutas
 router.get('/mensaje',hello);
@@ -22,7 +22,7 @@ router.post('/login',login)
 //Put
 router.put('/actualizar',editar)
 
-//Delete
+//Delete  
 router.delete('/eliminar',eliminar)
 
 //------------------------------Fin Authentication
@@ -40,5 +40,7 @@ router.put('/darLike',likePost);
 router.put('/comentar',comentarPost)
 
 
+//Delete  
+router.delete('/eliminarPost',eliminarPost)
 //------------------------------Fin Post
 module.exports = router;

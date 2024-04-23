@@ -6,6 +6,7 @@ import Home from '../Vistas/Principal/Home'
 import Post from '../Vistas/UserVistas/Post'
 import PrimeraPagina from '../Vistas/Principal/PrimeraPagina'
 import EditarPerfil from '../Vistas/UserVistas/EditarPerfil'
+import AllPost from '../Vistas/AdminVistas/AllPost'
 
 function Router(){
     
@@ -21,6 +22,7 @@ function Router(){
                 <Route path="/createPost"  element={ <Post/>} />
                 <Route path="/primeraPagina"  element={ <PrimeraPagina/>} />
                 <Route path="/editarPerfil"  element={ <EditarPerfil/>} />
+                <Route path="/gestionPosts"  element={ <AllPost/>} />
             </Routes>
         </BrowserRouter>
     )

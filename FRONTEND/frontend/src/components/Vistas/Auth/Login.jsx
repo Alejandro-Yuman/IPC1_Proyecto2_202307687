@@ -26,6 +26,12 @@ function IniciarSesion() {
                 correo: "ipc11s2024@email.com",
                 contraseña: "@dminIPC1"
             }
+            Swal.fire({
+                icon: "success",
+                title: "Logeado correctamente Administrador",
+                showConfirmButton: false,
+                timer: 1500
+            });
             setCookies('usuario', dataUser)
             Navegador('/mainAdmin')
         } else {

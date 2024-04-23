@@ -75,9 +75,11 @@ function MenuPrincipalAdministrador() {
 
     return (
         <div>
-            <NavBarAdmin/>
+            <NavBarAdmin />
             <div className="home-background">
-                <div className="container pt-5">
+                <h1 className="fw-bold text-center pt-3 text-white">Usuarios</h1>
+                <div className="container ">
+                    <button type="button" class="btn btn-secondary mb-2">Exportar como CSV</button>
                     <table className="table table-striped pt-5">
                         <thead>
                             <tr>
