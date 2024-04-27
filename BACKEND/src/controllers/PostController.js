@@ -13,8 +13,16 @@ function CrearPost(req, res) {
         const categoria = req.body.categoria
         const anonimo = req.body.anonimo
 
-        id_publicacion = id_publicacion + 1
-        const newPost = new Post(id_publicacion, carnet, descripcion, imagen, categoria, anonimo)
+        const ultimo = list_posts[list_posts.length-1]
+
+        var id 
+        if(!ultimo){
+            id = 1
+        }else{
+            id =ultimo.id+1
+        }
+        
+        const newPost = new Post(id, carnet, descripcion, imagen, categoria, anonimo)
         list_posts.push(newPost)
 
         res.json(
@@ -93,7 +101,7 @@ function likePost(req, res) {
                     mensaje: 'Se le dio like al post correctamente.'
                 })
             }
-
+ 
 
 
         } else {

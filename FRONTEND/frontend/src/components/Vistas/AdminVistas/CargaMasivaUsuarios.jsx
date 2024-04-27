@@ -77,7 +77,7 @@ function CargaMasivaUsuarios() {
                 <div className="container pt-3">
                     <div className="container mb-2">
                         <input type="file" className="mb-2 text-white fw-bold "  accept=".json" onChange={handleFileChange} />
-                        <button type="button" class="btn btn-secondary mx-4" onClick={cargarDatos}>Cargar Archivo</button>
+                        <button type="button" className="btn btn-secondary mx-4" onClick={cargarDatos}>Cargar Archivo</button>
                     </div>
                     <table className="table table-striped pt-5">
                         <thead>

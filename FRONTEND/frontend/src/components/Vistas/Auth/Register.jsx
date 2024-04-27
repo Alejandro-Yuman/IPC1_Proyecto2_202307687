@@ -20,6 +20,7 @@ function Register() {
 
     const Navegador = useNavigate();
 
+    
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -33,6 +34,16 @@ function Register() {
             Swal.fire({
                 icon: "error",
                 title: "Seleccione un genero",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            return
+        }
+
+        if(carnet === "12024"){
+            Swal.fire({
+                icon: "error",
+                title: "Carnet ya esta en uso",
                 showConfirmButton: false,
                 timer: 1500
             });

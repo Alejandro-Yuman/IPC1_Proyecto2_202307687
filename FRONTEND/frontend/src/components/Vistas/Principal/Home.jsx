@@ -62,6 +62,7 @@ function Home() {
         })
             .then((response) => response.json())
             .then((res) => {
+                console.log(res);
                 if (res.mensaje) {
                     setActualizarPost(!actualizarPost);
                 } else {
@@ -102,6 +103,8 @@ function Home() {
                         timer: 1500
                     });
                     setActualizarPost(!actualizarPost);
+                    closePostView()
+                    setComentario('')
                 } else {
 
                     Swal.fire({

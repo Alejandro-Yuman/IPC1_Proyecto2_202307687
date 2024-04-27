@@ -77,8 +77,38 @@ function eliminar(req,res){
     }
 }
 
+function getContraseña(req,res){
+    try {
+        const carnet = req.body.carnet;
+        const usuario =list_users.find(x_user => x_user.carnet === carnet);
+        
+        if(usuario){ 
+
+            
+            return res.json({
+                contraseña: usuario.contraseña,
+                mensaje: "Se encontró el recurso solicitado."
+            })
+
+        }else{
+            console.log(error);
+            return res.json({
+                error: 'Usuario no encontrado.'
+            })
+        }
+
+
+    } catch (error) {
+        console.log(error);
+        return res.json({
+            error: 'Ocurrio un error inesperado.'
+        })
+    }
+}
+
 module.exports = {
     getUsers,
     editar,
-    eliminar
+    eliminar,
+    getContraseña
 }

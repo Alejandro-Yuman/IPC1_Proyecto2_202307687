@@ -24,9 +24,36 @@ function EditarPerfil() {
     const [hombre, setHombre] = useState(false)
     const [mujer, setMujer] = useState(false)
 
+    const [actualizar, setActualizar] = useState(false);
     const Navegador = useNavigate();
 
     useEffect(() => {
+        const dataJson = {
+            carnet: datosUser.carnet,
+        }
+        fetch('http://localhost:5000/getContrasenia', {
+            method: "POST",
+            body: JSON.stringify(dataJson),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then((response) => response.json())
+            .then((res) => {
+                if (res.mensaje) {
+                    setContraseña(res.contraseña)
+
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: res.error,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }).catch(((error) => console.error(error)))
+
         setNombres(datosUser.nombre)
         setApellidos(datosUser.apellidos)
         setFacultad(datosUser.facultad)
@@ -34,31 +61,23 @@ function EditarPerfil() {
         setCorreo(datosUser.correo)
         //setContraseña(datosUser.contraseña)
         console.log(datosUser);
-        if (datosUser.genero === "Hombre") {
-            setHombre(true)
-            console.log("Cambiando:"+hombre);
-            document.getElementById("maleGender").checked = true;
+        
+    }, [actualizar]);
 
-        } else if (datosUser.genero === "Mujer") {
-            setMujer(true)
-            document.getElementById("femaleGender").checked = true;
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Ocurrio un error",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            return
-        }
-    }, []);
+    const handleHombre = (event)=>{
+        setHombre(event.target.checked)
+    }
+
+    const handleMujer = (event)=>{
+        setMujer(event.target.checked)
+    }
 
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Hombre:"+ hombre);
-        console.log("Mujer:" +mujer);
+        console.log("Hombre:" + hombre);
+        console.log("Mujer:" + mujer);
         if (hombre) {
             genero = "Hombre"
 
@@ -97,6 +116,7 @@ function EditarPerfil() {
             .then((response) => response.json())
             .then((res) => {
                 if (res.mensaje) {
+                    dataJson.contraseña = undefined
                     setCookies('usuario', dataJson)
                     console.log(res);
                     Swal.fire({
@@ -105,7 +125,7 @@ function EditarPerfil() {
                         showConfirmButton: false,
                         timer: 1500
                     });
-
+                    setActualizar(!actualizar);
 
 
                     //setCookies('usuario', dataUser)
@@ -151,7 +171,7 @@ function EditarPerfil() {
                                                 placeholder="Nombres"
                                                 onChange={(e) => setNombres(e.target.value)}
                                                 value={nombres}
-                                                
+
                                                 required
                                             />
                                         </div>
@@ -235,15 +255,18 @@ function EditarPerfil() {
 
                                     <div className="form-check form-check-inline mb-0 me-4">
                                         <input className="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                                            onChange={(e) => setHombre(e.target.value)}
-                                            value={hombre} />
+                                            onChange={handleHombre}
+                                            value={hombre} 
+                                            />
                                         <label className="form-check-label" htmlFor="maleGender">Hombre</label>
                                     </div>
 
                                     <div className="form-check form-check-inline mb-0 me-4">
                                         <input className="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                                            onChange={(e) => setMujer(e.target.value)}
-                                            value={mujer} />
+                                            onChange={handleMujer}
+                                            value={mujer} 
+                                            
+                                            />
                                         <label className="form-check-label" htmlFor="femaleGender">Mujer</label>
                                     </div>
 

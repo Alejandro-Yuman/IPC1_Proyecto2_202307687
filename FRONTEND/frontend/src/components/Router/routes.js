@@ -9,6 +9,7 @@ import EditarPerfil from '../Vistas/UserVistas/EditarPerfil'
 import AllPost from '../Vistas/AdminVistas/AllPost'
 import CargaMasivaUsuarios from '../Vistas/AdminVistas/CargaMasivaUsuarios'
 import CargaMasivaPublicaciones from '../Vistas/AdminVistas/CargaMasivaPublicaciones'
+import Reportes from '../Vistas/AdminVistas/Reportes'
 
 function Router(){
     
@@ -27,6 +28,7 @@ function Router(){
                 <Route path="/gestionPosts"  element={ <AllPost/>} />
                 <Route path="/cargaMasivaUsuarios"  element={ <CargaMasivaUsuarios/>} />
                 <Route path="/cargaMasivaPublicaciones"  element={ <CargaMasivaPublicaciones/>} />
+                <Route path="/reportes"  element={ <Reportes/>} />
             </Routes>
         </BrowserRouter>
     )
