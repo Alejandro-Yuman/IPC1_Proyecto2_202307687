@@ -10,7 +10,7 @@ import AllPost from '../Vistas/AdminVistas/AllPost'
 import CargaMasivaUsuarios from '../Vistas/AdminVistas/CargaMasivaUsuarios'
 import CargaMasivaPublicaciones from '../Vistas/AdminVistas/CargaMasivaPublicaciones'
 import Reportes from '../Vistas/AdminVistas/Reportes'
-
+import PostTendencia from "../Vistas/UserVistas/Tendencias";
 function Router(){
     
     
@@ -29,6 +29,7 @@ function Router(){
                 <Route path="/cargaMasivaUsuarios"  element={ <CargaMasivaUsuarios/>} />
                 <Route path="/cargaMasivaPublicaciones"  element={ <CargaMasivaPublicaciones/>} />
                 <Route path="/reportes"  element={ <Reportes/>} />
+                <Route path="/tendencias"  element={ <PostTendencia/>} />
             </Routes>
         </BrowserRouter>
     )

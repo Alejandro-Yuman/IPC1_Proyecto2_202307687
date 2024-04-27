@@ -53,7 +53,7 @@ function CargaMasivaPublicaciones(req, res) {
             const usuarioExiste = list_users.find(x_user => x_user.carnet === codigo);
 
             if (usuarioExiste) {
-                const ultimo = list_posts[list_posts.length-1]
+                const ultimo = list_posts[0]
 
                 var id 
                 if(!ultimo){
@@ -63,7 +63,8 @@ function CargaMasivaPublicaciones(req, res) {
                 }
 
                 const newPost = new Post(id, codigo, descripcion, null, categoria, anonimo)
-                list_posts.push(newPost)
+                list_posts.unshift(newPost)
+                //list_posts.push(newPost)
             } 
 
         }

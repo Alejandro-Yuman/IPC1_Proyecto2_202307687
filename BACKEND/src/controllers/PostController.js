@@ -13,7 +13,7 @@ function CrearPost(req, res) {
         const categoria = req.body.categoria
         const anonimo = req.body.anonimo
 
-        const ultimo = list_posts[list_posts.length-1]
+        const ultimo = list_posts[0]
 
         var id 
         if(!ultimo){
@@ -23,8 +23,8 @@ function CrearPost(req, res) {
         }
         
         const newPost = new Post(id, carnet, descripcion, imagen, categoria, anonimo)
-        list_posts.push(newPost)
-
+        //list_posts.push(newPost)
+        list_posts.unshift(newPost)
         res.json(
             { mensaje: 'Post creado exitosamente correctamente.' }
 
@@ -188,10 +188,72 @@ function eliminarPost(req, res) {
     }
 
 }
+
+function GetTrendingPosts(req, res) {
+    try {
+        const posts_con_usuario = [];
+
+        for (const post of list_posts) {
+
+            const usuario = list_users.find(user => user.carnet === post.user);
+
+
+
+            if (usuario) {
+                const post_con_usuario = {
+                    id: post.id,
+                    descripcion: post.descripcion,
+                    imagen: post.imagen,
+                    fechaHora: post.fechaHora,
+                    user: usuario.nombre,
+                    facultad: usuario.facultad,
+                    carrera: usuario.carrera,
+                    categoria: post.categoria,
+                    anonimo: post.anonimo,
+                    likes: post.likes.length,
+                    comentarios: post.comentarios
+
+                };
+
+                posts_con_usuario.push(post_con_usuario);
+            }
+        }
+        
+
+        posts_con_usuario.sort(ordenar)
+        //posts_con_usuario.splice(0,10)
+        
+        res.json(
+            { publicaciones: posts_con_usuario }
+        );
+
+
+    } catch (error) {
+        console.log(error);
+        return res.json({
+            error: 'Ocurrio un error al obtener los Posts'
+        })
+    }
+}
+
+function sumarLikeYCom(post){
+    
+    return post.likes + post.comentarios.length
+    
+}
+
+function ordenar(a,b){
+    const A = sumarLikeYCom(a);
+    console.log("A"+A);
+    const B = sumarLikeYCom(b);
+    console.log("B"+B);
+    return B - A;
+}
 module.exports = {
     CrearPost,
     GetAllPosts,
     likePost,
     comentarPost,
-    eliminarPost
+    eliminarPost,
+    GetTrendingPosts
 }

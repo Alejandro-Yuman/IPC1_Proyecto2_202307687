@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import NavBar from '../Utils/NavBar'
 import { Modal } from "react-bootstrap";
 
-function Home() {
+function PostTendencia() {
     const [cookies, setCookies] = useCookies(['usuario'])
     const [datosUser, setDatosUser] = useState(cookies.usuario)
     const [listaObjetos, setListaObjetos] = useState([])
@@ -18,7 +18,7 @@ function Home() {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/getAllPosts`, {
+        fetch(`http://localhost:5000/getTrendingPosts`, {
             method: "GET", // Utiliza el método POST
             headers: {
                 "Content-Type": "application/json", // Establece el tipo de contenido de la solicitud como JSON
@@ -121,6 +121,9 @@ function Home() {
         <div>
             <NavBar />
             <div className="home-background ">
+                <div className="text-center text-white pt-3">
+                    <h3>Tendenc ias</h3>
+                </div>
                 {listaObjetos.map(objeto => (
                     <div>
 
@@ -186,7 +189,7 @@ function Home() {
                                             <div className="derecha">
                                                 <button onClick={() => { postView(objeto) }} type="button" className="btn btn-outline-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-left" viewBox="0 0 16 16">
                                                     <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                                                </svg> Comentarios {objeto.comentarios.length}
+                                                </svg>  Comentarios {objeto.comentarios.length}
                                                 </button>
                                             </div>
                                         </div>
@@ -223,9 +226,9 @@ function Home() {
                             {selectedPost.comentarios.map(comentario => (
                                 <div className="row">
                                     <div className="col-1 pt-4 centrado">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
                                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                            <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
                                     </svg>
                                     </div>
                                 <div className="card mt-2 col-11" >
@@ -284,4 +287,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default PostTendencia;

@@ -4,7 +4,7 @@ const router = express.Router();
 const{hello} = require('../controllers/holamundo');
 const {SingUp ,login} = require('../controllers/Authentication')
 const {getUsers,editar ,eliminar,getContraseña} = require('../controllers/GestionPerfil')
-const {CrearPost,GetAllPosts,likePost,comentarPost, eliminarPost} = require('../controllers/PostController')
+const {CrearPost,GetAllPosts,likePost,comentarPost, eliminarPost, GetTrendingPosts} = require('../controllers/PostController')
 const {CargaMasivaUsuarios,CargaMasivaPublicaciones} = require('../controllers/CargaMasivaController')
 const {mostUsersPosts, mostLikedPost,postByCategoryia} = require('../controllers/ChartsController')
 
@@ -35,6 +35,7 @@ router.delete('/eliminar',eliminar)
    
 //Get
 router.get('/getAllPosts',GetAllPosts)
+router.get('/getTrendingPosts',GetTrendingPosts)
 
 //Post
 router.post('/crearPost',CrearPost)
