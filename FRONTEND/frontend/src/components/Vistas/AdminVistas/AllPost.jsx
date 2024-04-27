@@ -73,6 +73,19 @@ function AllPost() {
             }).catch(((error) => console.error(error)))
     }
 
+    const createCSV = () => {
+        var array = []
+        for (var iterator of listaObjetos) {
+            array.push(Object.values(iterator))
+        }
+        
+        var csvContent = array.join("\n");
+        var link = window.document.createElement("a");
+        link.setAttribute("href", "data:text/csv;charset=utf-8,%EF%BB%BF" + encodeURI(csvContent));
+        link.setAttribute("download", "Post_Data.csv");
+        link.click();
+    }
+
 
     return (
         <div>
@@ -81,7 +94,7 @@ function AllPost() {
                 <h1 className="fw-bold text-center pt-3 text-white">Publicaciones</h1>
 
                 <div className="container ">
-                    <button type="button" className="btn btn-secondary mb-2">Exportar como CSV</button>
+                    <button type="button" className="btn btn-secondary mb-2" onClick={createCSV}>Exportar como CSV</button>
                     <table className="table table-striped pt-5">
                         <thead>
                             <tr>
